@@ -12,6 +12,8 @@ Small util for creating and using immutable data
 
 * [Setup](#setup)
 * [Usage](#usage)
+  * [Stabilize an object](#stabilize-an-object)
+  * [Stabilize an array](#stabilize-an-array)
 * [Test](#test)
 
 
