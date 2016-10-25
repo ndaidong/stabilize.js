@@ -5,11 +5,13 @@ var path = require('path');
  * Import specs
  */
 
+var files = [
+  'main', 'object', 'array', 'builtTest'
+];
+
 var where = './test/specs';
 if (fs.existsSync(where)) {
-  fs.readdirSync(where).forEach((file) => {
-    if (path.extname(file) === '.js') {
-      require(path.join('.' + where, file));
-    }
+  files.forEach((file) => {
+    require(path.join('.' + where, file));
   });
 }

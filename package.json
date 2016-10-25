@@ -28,6 +28,7 @@
     "coveralls": "latest",
     "eslint": "latest",
     "eslint-config-ggc": "latest",
+    "gcc-min": "latest",
     "nyc": "latest",
     "snyk": "latest",
     "tap-spec": "latest",

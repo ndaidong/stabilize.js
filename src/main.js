@@ -18,6 +18,8 @@
   }
 })('stabilize', () => {
 
+  var stabilize;
+
   var astabilize = (data = []) => {
 
     let a = [...data];
@@ -30,47 +32,42 @@
           r.push(arr[i]);
         }
       }
-      return astabilize(r);
+      return stabilize(r);
     };
 
     let first = () => {
       let r = [...a][0];
-      return astabilize(r);
+      return stabilize(r);
     };
 
     let last = () => {
       let r = [...a][a.length - 1];
-      return astabilize(r);
+      return stabilize(r);
     };
 
-    let pop = () => {
-      let r = a.slice(0, -1);
-      return astabilize(r);
+    let insert = (at = 0, ...items) => {
+      let r = [...a];
+      let p0 = r.slice(0, at);
+      let p1 = r.slice(at, r.length);
+      return stabilize([].concat(p0, ...items, p1));
+    };
+    let append = (...items) => {
+      return insert(a.length, items);
     };
 
-    let shift = () => {
-      let r = a.slice(1);
-      return astabilize(r);
+    let remove = (start = 0, count = 0) => {
+      let r = [...a.slice(0, start), ...a.slice(start + count)];
+      return stabilize(r);
     };
 
-    let push = (item) => {
-      let r = [...a, item];
-      return astabilize(r);
+    let isort = (fn) => {
+      let r = [...a].sort(fn);
+      return stabilize(r);
     };
 
-    let unshift = (item) => {
-      let r = [item, ...a];
-      return astabilize(r);
-    };
-
-    let splice = (start, deleteCount, ...items) => {
-      let r = [...a.slice(0, start), ...items, ...a.slice(start + deleteCount)];
-      return astabilize(r);
-    };
-
-    let reverse = () => {
+    let ireverse = () => {
       let r = [...a].reverse();
-      return astabilize(r);
+      return stabilize(r);
     };
 
     let addMethods = (met) => {
@@ -83,25 +80,20 @@
     };
 
     [
+      ['unique', unique],
       ['first', first],
       ['last', last],
-      ['pop', pop],
-      ['shift', shift],
-      ['push', push],
-      ['unshift', unshift],
-      ['splice', splice],
-      ['reverse', reverse],
-      ['unique', unique]
+      ['insert', insert],
+      ['append', append],
+      ['remove', remove],
+      ['isort', isort],
+      ['ireverse', ireverse]
     ].map(addMethods);
 
     return a;
   };
 
-  var stabilize = (data = {}) => {
-
-    if (Array.isArray(data)) {
-      return astabilize(data);
-    }
+  var ostabilize = (data = {}) => {
 
     let o = Object.create({});
 
@@ -150,6 +142,16 @@
     });
 
     return o;
+  };
+
+  stabilize = (data) => {
+    if (Array.isArray(data)) {
+      return astabilize(data);
+    }
+    if (data instanceof Object) {
+      return ostabilize(data);
+    }
+    return data;
   };
 
   return stabilize;
