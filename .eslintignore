@@ -1,13 +1,8 @@
-# Logs
-logs
-*.log
-*.debug
-
-# Runtime data
-*.pid
-*.lock
-*.seed
-
-node_modules
-coverage
-.nyc_output
+coverage/*
+node_modules/*
+dist
+**/vendor/*.js
+.nyc_output/*
+LICENSE
+package.json
+README.md
