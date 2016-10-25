@@ -12,6 +12,8 @@ Small util for creating and using immutable data
 
 * [Setup](#setup)
 * [Usage](#usage)
+  * [Stabilize an object](#stabilize-an-object)
+  * [Stabilize an array](#stabilize-an-array)
 * [Test](#test)
 
 
@@ -25,10 +27,10 @@ Small util for creating and using immutable data
 
 - CDN
 
-  [stabilize.min.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.min.js)
+  [stabilize.min.js](https://rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.min.js)
 
   ```
-  <script type="text/javascript" src="https://cdn.rawgit.com/ndaidong/bellajs/master/dist/bella.min.js"></script>
+  <script type="text/javascript" src="https://rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.min.js"></script>
   ```
 
 - This library also supports ES6 Module, AMD and UMD style.
@@ -37,6 +39,52 @@ Small util for creating and using immutable data
 # Usage
 
 This library stabilize.is provides just one function named "stabilize" that you can pass through it an object or array to get an immutable version returns.
+
+
+### Stabilize an object
+
+```
+stabilize(Object o);
+```
+
+Return an immutable object that has 2 method "set()" and "get()".
+
+#### .get(key)
+
+Return value of specified property
+
+#### .set(key, value)
+
+Return an new immutable object with new properties
+
+Setter also accepts an object to allow to define many properties at the same time:
+
+```
+let car = stabilize({
+  name: '',
+  speed: 1000,
+  color: 'black'
+});
+
+let tesla = car.set({
+  name: 'Tesla',
+  price: 40000
+});
+
+console.log(tesla);
+```
+
+*tesla* now is a new object with the following properties:
+
+```
+{
+  name: 'Tesla',
+  speed: 1000,
+  color: 'black',
+  price: 40000
+}
+```
+
 
 An example with Node.js:
 
@@ -65,7 +113,92 @@ console.log(guest.name); // => Tom
 console.log(user.name); // => Bob
 ```
 
-// Todo: Improve documentation
+### Stabilize an array
+
+```
+stabilize(Array a);
+```
+
+Return an immutable array that has the new methods: *unique*, *first*, *last*, *insert*, *append*, *remove*, *isort* and *ireverse*. All these methods return the immutable data.
+
+
+#### .unique(key)
+
+Return a new array with no duplicate elements.
+
+```
+let a = stabilize([1, 2, 2, 3, 2, 4]);
+let b = a.unique();
+
+console.log(b); // => [ 1, 2, 3, 4 ]
+```
+
+#### .first()
+
+Return the first element from array.
+
+```
+let a = stabilize([1, 2, 2, 3, 2, 4]);
+let b = a.first();
+
+console.log(b); // => 1
+```
+
+#### .last()
+
+Return the last element from array.
+
+```
+let a = stabilize([1, 2, 2, 3, 2, 4]);
+let b = a.last();
+
+console.log(b); // => 4
+```
+
+#### .insert(at, element1, element2, ...elementN)
+
+Return a new array with new elements inserted at the position specified by first parameter.
+
+```
+let a = stabilize([1, 2, 3, 4]);
+let b = a.insert(2, 'a');
+
+console.log(b); // => [ 1, 2, 'a', 3, 4 ]
+```
+
+#### .append(element1, element2, ...elementN)
+
+Return a new array with new elements added at the end.
+
+```
+let a = stabilize([1, 2, 3, 4]);
+let b = a.append(5, 6, 7);
+
+console.log(b); // => [ 1, 2, 3, 4, 5, 6, 7 ]
+```
+
+#### .remove(start, count)
+
+Return a new array with *count* elements deleted beginning at *start*:
+
+```
+let a = stabilize([1, 2, 3, 4, 5, 6]);
+let b = a.remove(3, 2); // remove 2 items from index 3, means 4 and 5
+
+console.log(b); // => [ 1, 2, 3, 6 ]
+```
+
+#### .isort(compareFunction)
+
+Return a new array sorted by *compareFunction*.
+
+This method do the same thing as [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), but immutable.
+
+
+#### .ireverse()
+
+This method do the same thing as [Array.reverse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse), but immutable.
+
 
 
 # Test
