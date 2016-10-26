@@ -40,7 +40,10 @@ Small util for creating and using immutable data
 
 This library provides just one function named "stabilize" that you can pass through it an object or array to get back immutable version.
 
-## stabilize(Array | Object x);
+
+```
+stabilize(Array | Object x);
+```
 
 
 ### Stabilize an object
