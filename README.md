@@ -42,8 +42,10 @@ This library provides just one function named "stabilize" that you can pass thro
 
 
 ```
-stabilize(Array | Object x);
+var x = stabilize(Array | Object y);
 ```
+
+x is copy of y, and immutable. Any change in y will not affect to x.
 
 
 ### Stabilize an object
