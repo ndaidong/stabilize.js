@@ -1,5 +1,5 @@
 # stabilize.js
-Small util for creating and using immutable data
+This may be the simplest way to work with immutable data.
 
 [![NPM](https://badge.fury.io/js/stabilize.js.svg)](https://badge.fury.io/js/stabilize.js)
 [![Build Status](https://travis-ci.org/ndaidong/stabilize.js.svg?branch=master)](https://travis-ci.org/ndaidong/stabilize.js)
