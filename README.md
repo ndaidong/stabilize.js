@@ -40,6 +40,8 @@ Small util for creating and using immutable data
 
 This library stabilize.is provides just one function named "stabilize" that you can pass through it an object or array to get an immutable version returns.
 
+Because the returned object is standard object, so you can still use the built-in methods in [Object.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype) as normal.
+
 
 ### Stabilize an object
 
@@ -47,7 +49,7 @@ This library stabilize.is provides just one function named "stabilize" that you 
 stabilize(Object o);
 ```
 
-Return an immutable object that has 2 method "set()" and "get()".
+Return an immutable object that has 2 methods "set()" and "get()".
 
 #### .get(key)
 
@@ -121,6 +123,8 @@ stabilize(Array a);
 
 Return an immutable array that has the new methods: *unique*, *first*, *last*, *insert*, *append*, *remove*, *isort* and *ireverse*. All these methods return the immutable data.
 
+Because the returned array is standard array, so you can still use the built-in methods in [Array.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) as normal.
+
 
 #### .unique(key)
 
@@ -192,13 +196,68 @@ console.log(b); // => [ 1, 2, 3, 6 ]
 
 Return a new array sorted by *compareFunction*.
 
-This method do the same thing as [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), but immutable.
+This method does the same thing as [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), but immutable.
+
+```
+let users = stabilize([
+  {
+    name: "Bob",
+    age: 28
+  },
+  {
+    name: "Anne",
+    age: 21
+  },
+  {
+    name: "Jim",
+    age: 33
+  },
+    {
+    name: "Kate",
+    age: 17
+  }
+]);
+let sortedUsers = users.isort((a, b) => {
+  let ag = a.age;
+  let bg = b.age;
+  if (ag === bg) {
+    return 0;
+  }
+  return ag < bg ? -1 : 1;
+});
+
+console.log(sortedUsers);
+```
+
+Output:
+
+```
+[ { name: 'Kate', age: 17 },
+  { name: 'Anne', age: 21 },
+  { name: 'Bob', age: 28 },
+  { name: 'Jim', age: 33 } ]
+```
 
 
 #### .ireverse()
 
-This method do the same thing as [Array.reverse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse), but immutable.
+This method does the same thing as [Array.reverse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse), but immutable.
 
+For example now you can reverse the above *sortedUsers* array:
+
+```
+let reversedUsers = sortedUsers.ireverse();
+console.log(reversedUsers);
+```
+
+Output:
+
+```
+[ { name: 'Jim', age: 33 },
+  { name: 'Bob', age: 28 },
+  { name: 'Anne', age: 21 },
+  { name: 'Kate', age: 17 } ]
+```
 
 
 # Test
