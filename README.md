@@ -45,7 +45,37 @@ This library provides just one function named "stabilize" that you can pass thro
 var x = stabilize(Array | Object y);
 ```
 
-x is copy of y, and immutable. Any change in y will not affect to x.
+x is a copy of y, and immutable.
+
+Here is an example with Node.js:
+```
+var stabilize = require('stabilize.js');
+
+let user = stabilize({
+  name: 'Bob',
+  age: 17
+});
+
+// user now is immutable
+console.log(user);
+
+// access the properties with get() or dot
+let name = user.get('name'); // similar to user.name
+console.log(name);
+
+// you can change properties' value with set() method
+// it will return a copy of user with new property
+
+let guest = user.set('name', 'Tom');
+console.log(guest.name); // => Tom
+
+// the value of user.name can not be changed
+console.log(user.name); // => Bob
+
+// because it's immutable
+user.name = 'Jerry';
+console.log(user.name); // => Bob
+```
 
 
 ### Stabilize an object
@@ -60,11 +90,11 @@ Because the returned object is standard object, so you can still use the built-i
 
 #### .get(key)
 
-Return value of specified property
+Return value of specified property.
 
 #### .set(key, value)
 
-Return an new immutable object with new properties
+Return an new immutable object with new property.
 
 Setter also accepts an object to allow to define many properties at the same time:
 
@@ -94,33 +124,6 @@ console.log(tesla);
 }
 ```
 
-
-An example with Node.js:
-
-```
-var stabilize = require('stabilize.js');
-
-let user = stabilize({
-  name: 'Bob',
-  age: 17
-});
-
-// user now is immutable
-console.log(user);
-
-// access the properties with get() or dot
-let name = user.get('name'); // similar to user.name
-console.log(name);
-
-// you can change properties' value with set() method
-// it will return a copy of user with new property
-
-let guest = user.set('name', 'Tom');
-console.log(guest.name); // => Tom
-
-// the value of user.name can not be changed
-console.log(user.name); // => Bob
-```
 
 ### Stabilize an array
 
