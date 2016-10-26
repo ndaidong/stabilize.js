@@ -40,7 +40,7 @@ Small util for creating and using immutable data
 
 This library stabilize.is provides just one function named "stabilize" that you can pass through it an object or array to get an immutable version returns.
 
-Because the returned object is regular object, so you can still use the built-in methods in Object.prototype as normal.
+Because the returned object is standard object, so you can still use the built-in methods in [Object.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype) as normal.
 
 
 ### Stabilize an object
@@ -123,7 +123,7 @@ stabilize(Array a);
 
 Return an immutable array that has the new methods: *unique*, *first*, *last*, *insert*, *append*, *remove*, *isort* and *ireverse*. All these methods return the immutable data.
 
-Because the returned array is regular array, so you can still use the built-in methods in Array.prototype as normal.
+Because the returned array is standard array, so you can still use the built-in methods in [Array.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array) as normal.
 
 
 #### .unique(key)
