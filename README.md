@@ -38,9 +38,14 @@ Small util for creating and using immutable data
 
 # Usage
 
-This library stabilize.is provides just one function named "stabilize" that you can pass through it an object or array to get an immutable version returns.
+This library provides just one function named "stabilize" that you can pass through it an object or array to get back immutable version.
 
-Because the returned object is standard object, so you can still use the built-in methods in [Object.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype) as normal.
+
+```
+var x = stabilize(Array | Object y);
+```
+
+x is copy of y, and immutable. Any change in y will not affect to x.
 
 
 ### Stabilize an object
@@ -50,6 +55,8 @@ stabilize(Object o);
 ```
 
 Return an immutable object that has 2 methods "set()" and "get()".
+
+Because the returned object is standard object, so you can still use the built-in methods in [Object.prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/prototype) as normal.
 
 #### .get(key)
 
