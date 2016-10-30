@@ -1,6 +1,6 @@
 {
   "name": "stabilize.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Small util for creating immutable data",
   "homepage": "https://www.npmjs.com/package/stabilize.js",
   "repository": {
