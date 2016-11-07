@@ -18,7 +18,36 @@
   }
 })('stabilize', () => {
 
+  const MAX_NUMBER = 9007199254740991;
+
   var stabilize;
+
+  var isArray = (val) => {
+    return Array.isArray(val);
+  };
+
+  var isObject = (val) => {
+    return val !== null && typeof val === 'object' && isArray(val) === false;
+  };
+
+  var random = (min, max) => {
+    if (!min || min < 0) {
+      min = 0;
+    }
+    if (!max) {
+      max = MAX_NUMBER;
+    }
+    if (min === max) {
+      return max;
+    }
+    if (min > max) {
+      min = Math.min(min, max);
+      max = Math.max(min, max);
+    }
+    let offset = min;
+    let range = max - min + 1;
+    return Math.floor(Math.random() * range) + offset;
+  };
 
   var astabilize = (data = []) => {
 
@@ -33,6 +62,14 @@
         }
       }
       return stabilize(r);
+    };
+
+    let min = () => {
+      return Math.min.apply({}, a);
+    };
+
+    let max = () => {
+      return Math.max.apply({}, a);
     };
 
     let first = () => {
@@ -70,6 +107,34 @@
       return stabilize(r);
     };
 
+    let shuffle = () => {
+      return isort(() => {
+        return Math.random() - 0.5;
+      });
+    };
+
+    let pick = (count = 1) => {
+      let b = a.shuffle();
+      let c = Math.max(Math.min(count, b.length), 1);
+      if (c >= b.length) {
+        return b;
+      }
+
+      if (c === 1) {
+        let ri = random(0, b.length - 1);
+        return b[ri];
+      }
+
+      let d = [];
+
+      while (d.length < c) {
+        let i = random(0, b.length - 1);
+        d.push(b[i]);
+        b = b.splice(i, 1);
+      }
+      return d;
+    };
+
     let addMethods = (met) => {
       Object.defineProperty(a, met[0], {
         enumerable: false,
@@ -80,14 +145,18 @@
     };
 
     [
+      ['min', min],
+      ['max', max],
       ['unique', unique],
       ['first', first],
       ['last', last],
+      ['pick', pick],
       ['insert', insert],
       ['append', append],
       ['remove', remove],
       ['isort', isort],
-      ['ireverse', ireverse]
+      ['ireverse', ireverse],
+      ['shuffle', shuffle]
     ].map(addMethods);
 
     return a;
@@ -130,7 +199,7 @@
         let _set = (k, v) => {
           a[k] = v;
         };
-        if (key instanceof Object) {
+        if (isObject(key)) {
           Object.keys(key).forEach((k) => {
             _set(k, key[k]);
           });
@@ -145,10 +214,10 @@
   };
 
   stabilize = (data) => {
-    if (Array.isArray(data)) {
+    if (isArray(data)) {
       return astabilize(data);
     }
-    if (data instanceof Object) {
+    if (isObject(data)) {
       return ostabilize(data);
     }
     return data;
