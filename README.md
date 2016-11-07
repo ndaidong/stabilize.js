@@ -147,6 +147,29 @@ let b = a.unique();
 console.log(b); // => [ 1, 2, 3, 4 ]
 ```
 
+#### .min()
+
+Return the smallest value from an array of numbers.
+
+```
+let a = stabilize([1, 2, 2, 3, 8, 5, 2, 4]);
+let b = a.min();
+
+console.log(b); // => 1
+```
+
+#### .max()
+
+Return the biggest value from an array of numbers.
+
+```
+let a = stabilize([1, 2, 2, 3, 8, 5, 2, 4]);
+let b = a.max();
+
+console.log(b); // => 1
+```
+
+
 #### .first()
 
 Return the first element from array.
@@ -168,6 +191,19 @@ let b = a.last();
 
 console.log(b); // => 4
 ```
+
+#### .pick(count)
+
+Extract *count* elements from array in randomly order.
+
+```
+let a = stabilize([1, 2, 2, 3, 2, 4]);
+let b = a.pick(3);
+console.log(b); // output an array of 3 random elements
+```
+
+Without *count*, this method returns a random element.
+
 
 #### .insert(at, element1, element2, ...elementN)
 
@@ -267,6 +303,15 @@ Output:
   { name: 'Bob', age: 28 },
   { name: 'Anne', age: 21 },
   { name: 'Kate', age: 17 } ]
+```
+
+##### .shuffle()
+
+Return a clone of given array with shuffled elements.
+
+```
+let shuffledUsers = sortedUsers.shuffle();
+console.log(shuffledUsers);
 ```
 
 

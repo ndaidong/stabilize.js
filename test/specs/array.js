@@ -55,15 +55,33 @@ test('Test how it works with array', (assert) => {
   };
 
   [
+    'min',
+    'max',
     'unique',
     'first',
     'last',
+    'pick',
     'insert',
     'append',
     'remove',
     'isort',
-    'ireverse'
+    'ireverse',
+    'shuffle'
   ].map(checkMethods);
+
+  assert.comment('Check the method ".min()"');
+  let original1 = stabilize([
+    1, 6, 9, 0, 6, 5, 3, 5, 2, 7, 6, 8
+  ]);
+  let original1Min = original1.min();
+  assert.ok(original1Min === 0, 'original1Min must be 0');
+
+  assert.comment('Check the method ".max()"');
+  let original2 = stabilize([
+    1, 6, 9, 0, 6, 5, 3, 5, 2, 7, 6, 8
+  ]);
+  let original2Max = original2.max();
+  assert.ok(original2Max === 9, 'original2Max must be 9');
 
   assert.comment('Check the method ".unique()"');
   let original = stabilize([
@@ -190,6 +208,41 @@ test('Test how it works with array', (assert) => {
   let vIsortIreverseLastItem = vIsortIreverse.last();
   assert.ok(vIsortIreverseLastItem.name === 'Paul', 'vIsortIreverseLastItem must have name = Paul');
   assert.ok(vIsortIreverseLastItem.age === 16, 'vIsortIreverseLastItem must have age = 16');
+
+  assert.comment('Check the method ".shuffle()"');
+  let arr2Shuffle = stabilize([
+    1, 4, 9, 18, 55, 64, 2, 7, 33, 8, 11, 44, 99, 15, 35, 64, 12, 27, 13, 28
+  ]);
+
+  let r1 = arr2Shuffle.shuffle();
+  assert.deepEquals(r1.length, arr2Shuffle.length, 'Returned array has same length');
+  assert.notDeepEqual(r1, arr2Shuffle, 'Returned array is not same as original');
+  let r2 = arr2Shuffle.shuffle();
+  assert.deepEquals(r2.length, arr2Shuffle.length, 'Returned array has same length');
+  assert.notDeepEqual(r2, arr2Shuffle, 'Returned array is not same as original');
+
+  assert.deepEquals(r2.length, r1.length, 'r2.length must be equal to r1.length');
+  assert.notDeepEqual(r2, r1, 'r2 is not same as r1');
+
+  assert.comment('Check the method ".pick()"');
+  let arr2Pick = stabilize(arr2Shuffle);
+
+  let k1 = arr2Pick.pick();
+  assert.ok(bella.isNumber(k1), 'arr2Pick.pick() must return a number');
+
+  let k2 = arr2Pick.pick(3);
+  let size2 = Math.min(3, arr2Pick.length);
+  assert.deepEquals(k2.length, size2, `arr2Pick.pick(3) must return array with ${size2} items`);
+
+  let k3 = arr2Pick.pick(5);
+  let size3 = Math.min(5, arr2Pick.length);
+  assert.deepEquals(k3.length, size3, `arr2Pick.pick(5) must return array with ${size3} items`);
+
+  let k4 = arr2Pick.pick(50);
+  assert.deepEquals(k4.length, arr2Pick.length, 'arr2Pick.pick(50) must return shuffled original array');
+
+  let k5 = arr2Pick.pick(-2);
+  assert.ok(bella.isNumber(k5), 'arr2Pick.pick(-1) must return a number');
 
   assert.end();
 });
