@@ -1,6 +1,6 @@
 {
   "name": "stabilize.js",
-  "version": "1.2.1",
+  "version": "1.2.15",
   "description": "Small util for creating immutable data",
   "homepage": "https://www.npmjs.com/package/stabilize.js",
   "repository": {
@@ -30,7 +30,7 @@
     "eslint": "3.x.x",
     "eslint-config-ggc": "1.x.x",
     "gcc-min": "3.x.x",
-    "http-server": "^0.9.0",
+    "http-server": "0.x.x",
     "jasmine-pure": "2.x.x",
     "nock": "9.x.x",
     "nsp": "2.x.x",

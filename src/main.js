@@ -13,11 +13,11 @@ const isObject = (val) => {
   return val !== null && typeof val === 'object' && isArray(val) === false;
 };
 
-var isString = (val) => {
+const isString = (val) => {
   return {}.toString.call(val) === '[object String]';
 };
 
-var hasProperty = (ob, k) => {
+const hasProperty = (ob, k) => {
   return Object.prototype.hasOwnProperty.call(ob, k);
 };
 
@@ -37,15 +37,15 @@ const defProp = (o, key, val = UNDEF, opt = {}) => {
   return o;
 };
 
-var random = (min, max) => {
+const random = (min, max) => {
   let offset = min;
   let range = max - min + 1;
   return Math.floor(Math.random() * range) + offset;
 };
 
-var stabilize = (() => {
+const stabilize = (() => {
 
-  var astabilize = (data) => {
+  const astabilize = (data) => {
 
     let a = [...data];
 
@@ -176,7 +176,7 @@ var stabilize = (() => {
     return a;
   };
 
-  var ostabilize = (data) => {
+  const ostabilize = (data) => {
 
     let o = Object.create({});
 
