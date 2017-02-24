@@ -1,7 +1,7 @@
 /**
  * stabilize.js
- * v1.2.15
- * built: Fri, 24 Feb 2017 11:18:36 GMT
+ * v1.2.16
+ * built: Fri, 24 Feb 2017 11:33:05 GMT
  * git: https://github.com/ndaidong/stabilize.js
  * author: @ndaidong
  * License: MIT

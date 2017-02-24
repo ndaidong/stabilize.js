@@ -83,7 +83,23 @@ Because the returned object is standard object, so you can still use the built-i
 
 ##### .get(key)
 
-Return value of specified property.
+Return value of the specified property.
+
+```
+let car = stabilize({
+  name: 'Tesla',
+  speed: 1000,
+  color: 'black'
+});
+
+let name = car.get('name');
+
+// or:
+// let name = car.name
+
+console.log(name); // => Tesla
+```
+
 
 ##### .set(key, value)
 
@@ -173,7 +189,7 @@ Return the biggest value from an array of numbers.
 let a = stabilize([1, 2, 2, 3, 8, 5, 2, 4]);
 let b = a.max();
 
-console.log(b); // => 1
+console.log(b); // => 8
 ```
 
 ##### .first()
@@ -181,7 +197,7 @@ console.log(b); // => 1
 Return the first element from array.
 
 ```
-let a = stabilize([1, 2, 2, 3, 2, 4]);
+let a = stabilize([1, 2, 5, 2, 3, 2, 4]);
 let b = a.first();
 
 console.log(b); // => 1
@@ -192,13 +208,13 @@ console.log(b); // => 1
 Return the last element from array.
 
 ```
-let a = stabilize([1, 2, 2, 3, 2, 4]);
+let a = stabilize([1, 2, 5, 2, 3, 2, 4]);
 let b = a.last();
 
 console.log(b); // => 4
 ```
 
-##### .pick(count)
+##### .pick([count])
 
 Extract *count* elements from array in randomly order.
 
@@ -208,7 +224,7 @@ let b = a.pick(3);
 console.log(b); // output an array of 3 random elements
 ```
 
-Without *count*, this method returns a random element.
+Without *count*, this method returns an only random element.
 
 
 ##### .insert(at, element1, element2, ...elementN)
