@@ -17,6 +17,13 @@
   npm install stabilize.js --save
   ```
 
+- CDN
+
+  - [stabilize.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.js)
+  - [stabilize.min.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.min.js)
+
+- This library also supports ES6 Module, AMD and UMD style.
+
 
 ## APIs
 
@@ -383,6 +390,9 @@ git clone https://github.com/ndaidong/stabilize.js.git
 cd stabilize.js
 npm install
 npm test
+
+// test in browser with jasmine
+npm run jasmine
 ```
 
 
