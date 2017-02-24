@@ -65,6 +65,7 @@ test('Test how it works with array', (assert) => {
     'append',
     'remove',
     'isort',
+    'msort',
     'ireverse',
     'shuffle'
   ].map(checkMethods);
@@ -178,7 +179,7 @@ test('Test how it works with array', (assert) => {
   assert.ok(vremoveLastItem.name === 'Rick', 'vremoveLastItem must have name = Rick');
   assert.ok(vremoveLastItem.age === 26, 'vremoveLastItem must have age = 26');
 
-  assert.comment('Check the method ".iresort()"');
+  assert.comment('Check the method ".isort()"');
   let visort = v.isort((a, b) => {
     let ag = a.age;
     let bg = b.age;
@@ -196,6 +197,19 @@ test('Test how it works with array', (assert) => {
   let viresortLastItem = visort.last();
   assert.ok(viresortLastItem.name === 'Mary', 'viresortLastItem must have name = Mary');
   assert.ok(viresortLastItem.age === 28, 'viresortLastItem must have age = 28');
+
+
+  assert.comment('Check the method ".msort()"');
+  let o2y = v.msort({age: -1});
+  assert.ok(v.length === o2y.length, `o2y.length must be ${v.length} (no change)`);
+  let y2o = v.msort('age');
+  assert.ok(v.length === y2o.length, `y2o.length must be ${v.length} (no change)`);
+  assert.ok(o2y.first().age === y2o.last().age, `o2y.first().age must be equal to y2o.last().age`);
+  let nums = [5, 12, 61, 123, 98, 11, 44, 55];
+  let sortedNums = stabilize(nums).msort();
+  assert.ok(sortedNums.length === nums.length, `sortedNums.length must be ${nums.length} (no change)`);
+  assert.ok(sortedNums.first(), 5, 'First number must be 5');
+  assert.ok(sortedNums.last(), 123, 'Last number must be 123');
 
   assert.comment('Check the method ".ireverse()"');
   let vIsortIreverse = visort.ireverse();

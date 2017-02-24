@@ -18,9 +18,6 @@ var isString = (val) => {
 };
 
 var hasProperty = (ob, k) => {
-  if (!ob || !k) {
-    return false;
-  }
   return Object.prototype.hasOwnProperty.call(ob, k);
 };
 
