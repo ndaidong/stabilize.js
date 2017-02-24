@@ -6,7 +6,7 @@ var path = require('path');
  */
 
 var files = [
-  'main', 'object', 'array'
+  'main', 'object', 'array', 'builtTest'
 ];
 
 var where = './test/specs';
