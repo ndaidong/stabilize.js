@@ -6,10 +6,13 @@ var path = require('path');
  */
 
 var files = [
-  'main', 'object', 'array', 'builtTest'
+  'main',
+  'object',
+  'array',
+  'builtTest'
 ];
 
-var where = './test/specs';
+var where = './tests/specs';
 if (fs.existsSync(where)) {
   files.forEach((file) => {
     require(path.join('.' + where, file));
