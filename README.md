@@ -22,7 +22,7 @@
   - [stabilize.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.js)
   - [stabilize.min.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.min.js)
 
-- Also supports ES6 Module, AMD and UMD style.
+- Also supports ES6 Module, CommonJS, AMD and UMD style.
 
 
 ### Usage
@@ -427,8 +427,6 @@ cd stabilize.js
 npm install
 npm test
 
-// test in browser with jasmine
-npm run jasmine
 ```
 
 
