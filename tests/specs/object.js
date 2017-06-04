@@ -22,6 +22,12 @@ var checkStabilizeObject = (stabilize) => {
     assert.ok(v.name === 'Alice', 'v must have name = Alice');
     assert.ok(v.age === 22, 'v must have age = 22');
 
+    assert.comment('Try to change its properties');
+    v.name = 'Bob';
+    assert.ok(v.name === 'Alice', 'v must still have name = Alice');
+    v.age = 30;
+    assert.ok(v.age === 22, 'v must still have age = 22');
+
     assert.comment('Use "set" method to change name to "Bob" and age to 30');
     v.set('name', 'Bob');
     v.set('age', 30);
