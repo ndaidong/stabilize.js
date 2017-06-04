@@ -3,7 +3,7 @@
 
 [![NPM](https://badge.fury.io/js/stabilize.js.svg)](https://badge.fury.io/js/stabilize.js)
 [![Build Status](https://travis-ci.org/ndaidong/stabilize.js.svg?branch=master)](https://travis-ci.org/ndaidong/stabilize.js)
-[![Coverage Status](https://coveralls.io/repos/github/ndaidong/stabilize.js/badge.svg?branch=master)](https://coveralls.io/github/ndaidong/stabilize.js?branch=master)
+[![codecov](https://codecov.io/gh/ndaidong/stabilize.js/branch/master/graph/badge.svg)](https://codecov.io/gh/ndaidong/stabilize.js)
 [![Dependency Status](https://gemnasium.com/badges/github.com/ndaidong/stabilize.js.svg)](https://gemnasium.com/github.com/ndaidong/stabilize.js)
 [![NSP Status](https://nodesecurity.io/orgs/techpush/projects/3a9676ad-378b-40f5-b139-263eb709545a/badge)](https://nodesecurity.io/orgs/techpush/projects/3a9676ad-378b-40f5-b139-263eb709545a)
 
@@ -38,7 +38,7 @@ Now, just take a look on an example in Node.js:
 
 
 ```
-var stabilize = require('bellajs').stabilize;
+import {stabilize} from 'stabilize.js';
 
 let user = stabilize({
   name: 'Bob',

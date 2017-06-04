@@ -1,6 +1,6 @@
 {
   "name": "stabilize.js",
-  "version": "1.2.16",
+  "version": "1.3.0",
   "description": "Small util for creating immutable data",
   "homepage": "https://www.npmjs.com/package/stabilize.js",
   "repository": {
@@ -8,41 +8,53 @@
     "url": "https://github.com/ndaidong/stabilize.js"
   },
   "author": "@ndaidong",
-  "main": "./index.js",
+  "main": "./dist/stabilize.js",
+  "module": "./src/main",
+  "jsnext:main": "./src/main",
+  "browser": "./dist/stabilize.min.js",
   "engines": {
     "node": ">= 6.0"
   },
   "scripts": {
-    "lint": "eslint ./src ./test",
+    "lint": "eslint ./src ./tests",
     "nsp": "nsp check --output checkstyle",
-    "tape": "nyc tape test/start.js | tap-spec",
-    "report": "nyc report --reporter=lcov",
+    "tape": "nyc babel-node node_modules/.bin/tape tests/start.js | tap-spec",
+    "report": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "pretest": "npm run lint && npm run nsp",
     "test": "npm run tape",
-    "posttest": "npm run report",
-    "coveralls": "npm test && cat ./coverage/lcov.info | coveralls",
-    "jasmine": "http-server ./ -c-1 -p 4567",
-    "build": "gccmin"
+    "posttest": "CODECOV_TOKEN=12083a94-8ea5-4e64-b571-76cd8fbd62ab npm run report",
+    "start": "babel-node src/main",
+    "build": "gccmin -e src/main.js -n stabilize -o dist -p package.json",
+    "reset": "node reset"
+  },
+  "dependencies": {
+    "bellajs": "7.x.x"
   },
   "devDependencies": {
-    "bellajs": "6.x.x",
-    "coveralls": "2.x.x",
+    "babel-cli": "6.x.x",
+    "babel-preset-env": "1.x.x",
+    "codecov": "2.x.x",
     "eslint": "3.x.x",
     "eslint-config-ggc": "1.x.x",
-    "gcc-min": "3.x.x",
-    "http-server": "0.x.x",
-    "jasmine-pure": "2.x.x",
-    "nock": "9.x.x",
+    "gcc-min": "5.x.x",
     "nsp": "2.x.x",
-    "nyc": "10.x.x",
+    "nyc": "11.x.x",
     "tap-spec": "4.x.x",
     "tape": "4.x.x"
   },
-  "gccmin": {
-    "source": "src",
-    "target": "dist",
-    "filename": "stabilize",
-    "globalVar": "stabilize"
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "> 1%"
+            ]
+          }
+        }
+      ]
+    ]
   },
   "keywords": [
     "immutable",
