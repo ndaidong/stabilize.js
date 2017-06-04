@@ -14,7 +14,7 @@
 - Node.js
 
   ```
-  npm install stabilize.js --save
+  npm install stabilize.js
   ```
 
 - CDN
@@ -22,7 +22,27 @@
   - [stabilize.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.js)
   - [stabilize.min.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.min.js)
 
-- This library also supports ES6 Module, AMD and UMD style.
+- Also supports ES6 Module, AMD and UMD style.
+
+
+### Usage
+
+```
+import {stabilize} from 'stabilize.js';
+
+let user = {
+  name: 'Bob',
+  age: 17
+};
+
+let immutableUser = stabilize(user);
+
+immutableUser.name = 'Alice';
+console.log(immutableUser.name); // => 'Bob'
+
+```
+
+After stabilizing an object or array, it will become an immutable variable with several useful methods for easy manipulation as bellow.
 
 
 ## APIs
