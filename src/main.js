@@ -34,6 +34,8 @@ var random = (min, max) => {
   return Math.floor(Math.random() * range) + offset;
 };
 
+var astabilize, ostabilize;
+
 export var stabilize = (data) => {
   if (isArray(data)) {
     return astabilize(data);
@@ -44,7 +46,7 @@ export var stabilize = (data) => {
   return data;
 };
 
-var astabilize = (data) => {
+astabilize = (data) => {
 
   let a = [...data];
 
@@ -175,7 +177,7 @@ var astabilize = (data) => {
   return a;
 };
 
-var ostabilize = (data) => {
+ostabilize = (data) => {
 
   let o = Object.create({});
 

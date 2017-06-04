@@ -1,6 +1,6 @@
 /**
  * stabilize.js@1.3.0
- * built on: Sun, 04 Jun 2017 11:25:12 GMT
+ * built on: Sun, 04 Jun 2017 11:29:46 GMT
  * repository: https://github.com/ndaidong/stabilize.js
  * maintainer: @ndaidong
  * License: MIT
@@ -61,6 +61,8 @@
     var range = max - min + 1;
     return Math.floor(Math.random() * range) + offset;
   };
+  var astabilize;
+  var ostabilize;
   var stabilize = function stabilize(data) {
     if (isArray(data)) {
       return astabilize(data);
@@ -70,7 +72,7 @@
     }
     return data;
   };
-  var astabilize = function astabilize(data) {
+  astabilize = function astabilize(data) {
     var a = [].concat(toConsumableArray(data));
     var unique = function unique() {
       var arr = [].concat(toConsumableArray(a));
@@ -180,7 +182,7 @@
     [['min', min], ['max', max], ['unique', unique], ['first', first], ['last', last], ['pick', pick], ['insert', insert], ['append', append], ['remove', remove], ['isort', isort], ['msort', msort], ['ireverse', ireverse], ['shuffle', shuffle]].map(addMethods);
     return a;
   };
-  var ostabilize = function ostabilize(data) {
+  ostabilize = function ostabilize(data) {
     var o = Object.create({});
     var setProp = function setProp(key) {
       defProp(o, key, data[key], {
