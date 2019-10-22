@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "12.13"
+  - "10.16"
+  - "8.6"
+env:
+  - COVERALLS_REPO_TOKEN=ptcBn9y2qWF1cocQK0OjR8b1eRoFXRBfj
+before_script:
+  - npm i
+script:
+  - npm test

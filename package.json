@@ -1,0 +1,42 @@
+{
+  "version": "4.0.0",
+  "name": "stabilize.js",
+  "description": "Small util for creating immutable data",
+  "homepage": "https://www.npmjs.com/package/stabilize.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ndaidong/stabilize.js"
+  },
+  "author": "@ndaidong",
+  "main": "./dist/stabilize.js",
+  "module": "./src/main",
+  "jsnext:main": "./src/main",
+  "browser": "./dist/stabilize.min.js",
+  "engines": {
+    "node": ">= 8.6"
+  },
+  "scripts": {
+    "lint": "eslint src tests/specs",
+    "pretest": "npm run lint && npm run build",
+    "test": "tap tests/start.js --coverage --reporter=spec",
+    "build": "gccmin -e src/main.js -n stabilize -o dist -p package.json",
+    "reset": "node reset"
+  },
+  "dependencies": {
+    "bellajs": "^8.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "^3.0.7",
+    "eslint-config-goes": "^1.1.6",
+    "gcc-min": "^7.1.5",
+    "tap": "^14.8.0"
+  },
+  "keywords": [
+    "immutable",
+    "freeze",
+    "stable",
+    "immutability",
+    "stability"
+  ],
+  "license": "MIT"
+}
