@@ -4,5 +4,5 @@ import {stabilize as min} from '../dist/stabilize.min';
 
 
 module.exports = {
-  variants: [es6, full, min]
+  variants: [es6, full, min],
 };

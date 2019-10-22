@@ -3,18 +3,18 @@
  * @ndaidong
  */
 
-var fs = require('fs');
-var test = require('tape');
+const fs = require('fs');
+const test = require('tap').test;
 
-var pkgFake = require('../../package.json');
-var proFile = './dist/stabilize.js';
-var devFile = './dist/stabilize.min.js';
+const pkgFake = require('../../package.json');
+const proFile = './dist/stabilize.js';
+const devFile = './dist/stabilize.min.js';
 
 test('Validate production output', (assert) => {
   assert.ok(fs.existsSync(proFile), 'Production file must be generated');
 
-  let s = fs.readFileSync(proFile, 'utf8');
-  let a = s.split('\n');
+  const s = fs.readFileSync(proFile, 'utf8');
+  const a = s.split('\n');
   assert.ok(s.length > 0 && a.length > 5, 'Production file must be not empty');
 
   assert.ok(a[1] === ` * ${pkgFake.name}@${pkgFake.version}`, 'Package name must be correct');
@@ -29,15 +29,15 @@ test('Validate production output', (assert) => {
 test('Validate development output', (assert) => {
   assert.ok(fs.existsSync(devFile), 'Development file must be generated');
 
-  let s = fs.readFileSync(devFile, 'utf8');
-  let a = s.split('\n');
+  const s = fs.readFileSync(devFile, 'utf8');
+  const a = s.split('\n');
   assert.ok(s.length > 0 && a.length > 1, 'Development file must be not empty');
-  let cmt = a[0];
-  let pack = `${pkgFake.name}@${pkgFake.version}`;
+  const cmt = a[0];
+  const pack = `${pkgFake.name}@${pkgFake.version}`;
   assert.ok(cmt.includes(pack), 'Package must be presented with name and version');
-  let author = `${pkgFake.author}`;
+  const author = `${pkgFake.author}`;
   assert.ok(cmt.includes(author), 'Package author must be correct');
-  let license = `${pkgFake.license}`;
+  const license = `${pkgFake.license}`;
   assert.ok(cmt.includes(license), 'Package license must be correct');
 
   assert.end();

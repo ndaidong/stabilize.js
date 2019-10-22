@@ -9,50 +9,48 @@ import {
   isArray,
   isObject,
   isString,
-  hasProperty
+  hasProperty,
 } from 'bellajs';
 
-var defProp = (o, key, val = UNDEF, opt = {}) => {
-  let {
+const defProp = (o, key, val = UNDEF, opt = {}) => {
+  const {
     enumerable = false,
     configurable = false,
     writable = false,
-    value = val
+    value = val,
   } = opt;
   Object.defineProperty(o, key, {
     enumerable,
     configurable,
     writable,
-    value
+    value,
   });
   return o;
 };
 
-var random = (min, max) => {
-  let offset = min;
-  let range = max - min + 1;
+const random = (min, max) => {
+  const offset = min;
+  const range = max - min + 1;
   return Math.floor(Math.random() * range) + offset;
 };
 
-var astabilize, ostabilize;
-
-export var stabilize = (data) => {
+export const stabilize = (data) => {
   if (isArray(data)) {
-    return astabilize(data);
+    return astabilize(data); // eslint-disable-line
   }
   if (isObject(data)) {
-    return ostabilize(data);
+    return ostabilize(data); // eslint-disable-line
   }
   return data;
 };
 
-astabilize = (data) => {
 
-  let a = [...data];
+const astabilize = (data) => {
+  const a = [...data];
 
-  let unique = () => {
-    let arr = [...a];
-    let r = [];
+  const unique = () => {
+    const arr = [...a];
+    const r = [];
     for (let i = 0; i < arr.length; i++) {
       if (r.indexOf(arr[i]) === -1) {
         r.push(arr[i]);
@@ -61,48 +59,48 @@ astabilize = (data) => {
     return stabilize(r);
   };
 
-  let min = () => {
+  const min = () => {
     return Math.min.apply({}, a);
   };
 
-  let max = () => {
+  const max = () => {
     return Math.max.apply({}, a);
   };
 
-  let first = () => {
-    let r = [...a][0];
+  const first = () => {
+    const r = [...a][0];
     return stabilize(r);
   };
 
-  let last = () => {
-    let r = [...a][a.length - 1];
+  const last = () => {
+    const r = [...a][a.length - 1];
     return stabilize(r);
   };
 
-  let insert = (at = 0, ...items) => {
-    let r = [...a];
-    let p0 = r.slice(0, at);
-    let p1 = r.slice(at, r.length);
+  const insert = (at = 0, ...items) => {
+    const r = [...a];
+    const p0 = r.slice(0, at);
+    const p1 = r.slice(at, r.length);
     return stabilize([].concat(p0, ...items, p1));
   };
 
-  let append = (...items) => {
+  const append = (...items) => {
     return insert(a.length, items);
   };
 
-  let remove = (start = 0, count = 0) => {
-    let r = [...a.slice(0, start), ...a.slice(start + count)];
+  const remove = (start = 0, count = 0) => {
+    const r = [...a.slice(0, start), ...a.slice(start + count)];
     return stabilize(r);
   };
 
-  let isort = (fn) => {
-    let r = [...a].sort(fn);
+  const isort = (fn) => {
+    const r = [...a].sort(fn);
     return stabilize(r);
   };
 
-  let msort = (o = 1) => {
-    let r = [...a];
-    let one = r[0];
+  const msort = (o = 1) => {
+    const r = [...a];
+    const one = r[0];
     if (o === 1 || o === -1) {
       r.sort((m, n) => {
         return m > n ? o : m < n ? -1 * o : 0; // eslint-disable-line no-nested-ternary
@@ -114,47 +112,47 @@ astabilize = (data) => {
       });
     }
     if (isObject(o)) {
-      for (let key in o) {
+      for (const key in o) {
         if (hasProperty(one, key)) {
-          let order = o[key] === -1 ? -1 : 1;
-          /*eslint-disable*/
+          const order = o[key] === -1 ? -1 : 1;
+          /* eslint-disable */
           r.sort((m, n) => {
             return (m[key] > n[key]) ? order : (m[key] < n[key] ? (-1 * order) : 0);
           });
-          /*eslint-enable*/
+          /* eslint-enable */
         }
       }
     }
     return stabilize(r);
   };
 
-  let ireverse = () => {
-    let r = [...a].reverse();
+  const ireverse = () => {
+    const r = [...a].reverse();
     return stabilize(r);
   };
 
-  let shuffle = () => {
+  const shuffle = () => {
     return isort(() => {
       return Math.random() - 0.5;
     });
   };
 
-  let pick = (count = 1) => {
-    let b = a.shuffle();
-    let c = Math.max(Math.min(count, b.length), 1);
+  const pick = (count = 1) => {
+    const b = a.shuffle();
+    const c = Math.max(Math.min(count, b.length), 1);
     if (c >= b.length) {
       return b;
     }
 
     if (c === 1) {
-      let ri = random(0, b.length - 1);
+      const ri = random(0, b.length - 1);
       return b[ri];
     }
 
     return stabilize(b.splice(0, c));
   };
 
-  let addMethods = (met) => {
+  const addMethods = (met) => {
     defProp(a, met[0], met[1]);
   };
 
@@ -171,19 +169,18 @@ astabilize = (data) => {
     ['isort', isort],
     ['msort', msort],
     ['ireverse', ireverse],
-    ['shuffle', shuffle]
+    ['shuffle', shuffle],
   ].map(addMethods);
 
   return a;
 };
 
-ostabilize = (data) => {
+const ostabilize = (data) => {
+  const o = Object.create({});
 
-  let o = Object.create({});
-
-  let setProp = (key) => {
+  const setProp = (key) => {
     defProp(o, key, data[key], {
-      enumerable: true
+      enumerable: true,
     });
   };
 
@@ -194,8 +191,8 @@ ostabilize = (data) => {
   });
 
   defProp(o, 'set', (key, value = false) => {
-    let a = Object.assign({}, o);
-    let _set = (k, v) => {
+    const a = Object.assign({}, o);
+    const _set = (k, v) => {
       a[k] = v;
     };
     if (isObject(key)) {
