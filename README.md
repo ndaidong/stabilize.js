@@ -373,7 +373,35 @@ players2.forEach((item) => {
 
 Results:
 
-![Array sorting easily](http://i.imgur.com/5n28Y6p.png)
+```
+Array points, original:
+[ 1, 5, 19, 6, 4, 11, 7, 22, 40, 3, 8 ]
+Array points, lowest to highest:
+[ 1, 3, 4, 5, 6, 7, 8, 11, 19, 22, 40 ]
+Array points, descendant:
+[ 40, 22, 19, 11, 8, 7, 6, 5, 4, 3, 1 ]
+
+List of players as it is:
+Jerome Nash | 24
+Jackson Valdez | 21
+Benjamin Cole | 23
+Manuel Delgado | 33
+Caleb McKinney | 28
+
+Sort by age from youngest to oldest:
+Jackson Valdez | 21
+Benjamin Cole | 23
+Jerome Nash | 24
+Caleb McKinney | 28
+Manuel Delgado | 33
+
+Sort by age from oldest to youngest:
+Manuel Delgado | 33
+Caleb McKinney | 28
+Jerome Nash | 24
+Benjamin Cole | 23
+Jackson Valdez | 21
+```
 
 
 ##### .ireverse()
