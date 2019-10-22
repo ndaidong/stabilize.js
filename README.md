@@ -6,17 +6,26 @@
 [![Coverage Status](https://coveralls.io/repos/github/ndaidong/stabilize.js/badge.svg?branch=master)](https://coveralls.io/github/ndaidong/stabilize.js?branch=master)
 
 
+### Setup
+
+- Node
+
+  ```
+  npm i stabilize.js
+  ```
+
+- CDN
+  - [stabilize.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.js)
+  - [stabilize.min.js](https://cdn.rawgit.com/ndaidong/stabilize.js/master/dist/stabilize.min.js)
+
+
+- This library also supports ES6 Module, AMD and UMD style.
+
 
 ### Usage
 
-Install
-
-```bash
-npm i stabilize.js
-```
-
 ```js
-const stabilize = require('stabilize.js');
+const {stabilize} = require('stabilize.js');
 
 const user = {
   name: 'Bob',
@@ -45,7 +54,7 @@ Returned result, depending on which type it's (Array or Object), will have some 
 For instance:
 
 ```js
-const stabilize = require('stabilize.js');
+const {stabilize} = require('stabilize.js');
 
 const user = stabilize({
   name: 'Bob',
