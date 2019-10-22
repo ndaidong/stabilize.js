@@ -1,6 +1,6 @@
 /**
  * stabilize.js@4.0.0
- * built on: Tue, 22 Oct 2019 03:52:50 GMT
+ * built on: Tue, 22 Oct 2019 04:08:21 GMT
  * repository: https://github.com/ndaidong/stabilize.js
  * maintainer: @ndaidong
  * License: MIT
